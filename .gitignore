@@ -1,0 +1,6 @@
+.bundle/
+log/*
+Gemfile.lock
+test/*
+*.sublime-*
+.DS_Store

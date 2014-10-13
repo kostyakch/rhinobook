@@ -1,0 +1,36 @@
+- provide(:title, "All #{t(:_BOOKS)}")
+
+.box-header
+	%h2
+		%i.fa-icon-book.align-justify
+		%span.break
+		= t(:_BOOKS)
+
+
+.box-content
+	.dataTables_wrapper
+		.row-fluid
+			.btn-overlay
+				= link_to new_book_path, class: 'btn btn-primary' do 
+					%i.halflings-icon.plus
+					= t(:_BTN_CREATE)
+
+	%table.table.table-striped.tree
+		%thead
+			%tr
+				%th{ width: "70%" }= t(:Book) 
+				%th{ width: "20%" }= t(:_STATUS)
+				%th= t(:_ACTIONS) 
+		%tbody
+			- if @books.any?
+				- @books.each do |item| 
+					%tr
+						%td= link_to item.name, chapter_path(item)
+						%td
+						%td
+							= link_to edit_book_path(item), class: 'btn btn-danger btn-small' do
+								%i.icon-pencil
+							= link_to book_path(item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
+								%i.icon-trash
+
+
