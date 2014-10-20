@@ -1,0 +1,40 @@
+- provide(:title, "All #{t(:pages)}")
+
+.box-header
+	%h2
+		%i.fa-icon-book.align-justify
+		%span.break
+		= "#{t(:pages)} for #{t(:chapter)}: \"#{@chapter.name}\""
+
+
+.box-content
+	.dataTables_wrapper
+		.row-fluid
+			.btn-overlay
+				= link_to book_chapters_path(@chapter.book), class: 'btn btn-primary' do 
+					%i.halflings-icon.arrow-left
+					= t(:to_chapters)
+
+			.btn-overlay
+				= link_to new_chapter_page_path(@chapter), class: 'btn btn-primary' do 
+					%i.halflings-icon.plus
+					= t(:_BTN_CREATE)
+
+	%table.table.table-striped.tree
+		%thead
+			%tr
+				%th{ width: "90%" }= t(:pages) 
+				%th= t(:_ACTIONS) 
+		%tbody
+			- if @pages.any?
+				- @pages.each do |item| 
+					%tr
+						%td
+							= link_to "#{t(:page)} #{item.num}", edit_chapter_page_path(@chapter, item)
+							%br
+							%small= truncate(item.content, length: 270)
+						%td
+							= link_to edit_chapter_page_path(@chapter, item), class: 'btn btn-danger btn-small' do
+								%i.icon-pencil
+							= link_to chapter_page_path(@chapter, item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
+								%i.icon-trash

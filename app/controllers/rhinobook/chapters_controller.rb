@@ -1,63 +1,66 @@
-require_dependency "rhinobook/application_controller"
-
 module Rhinobook
-  class ChaptersController < BaseController
-    before_action :set_chapter, only: [:show, :edit, :update, :destroy]
+	class ChaptersController < BaseController
+		before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
-    # GET /chapters
-    def index
-      @chapters = Chapter.all
-    end
+		# GET /chapters
+		def index
+			@book = Book.find params[:book_id]
+			@chapters = @book.chapters
+		end
 
-    # GET /chapters/1
-    def show
-    end
+		# GET /chapters/1
+		def show
+		end
 
-    # GET /chapters/new
-    def new
-      @chapter = Chapter.new
-    end
+		# GET /chapters/new
+		def new
+			@chapter = Chapter.new
+			@book = Book.find params[:book_id]
+		end
 
-    # GET /chapters/1/edit
-    def edit
-    end
+		# GET /chapters/1/edit
+		def edit
+		end
 
-    # POST /chapters
-    def create
-      @chapter = Chapter.new(chapter_params)
+		# POST /chapters
+		def create
+			@chapter = Chapter.new(chapter_params)
+			@book = Book.find params[:book_id]
+			@chapter.rhinobook_books_id = @book.id
 
-      if @chapter.save
-        redirect_to @chapter, notice: 'Chapter was successfully created.'
-      else
-        render action: 'new'
-      end
-    end
+			if @chapter.save
+				redirect_to book_chapters_path(@book)
+			else
+				render action: 'new'
+			end
+		end
 
-    # PATCH/PUT /chapters/1
-    def update
-      if @chapter.update(chapter_params)
-        redirect_to @chapter, notice: 'Chapter was successfully updated.'
-      else
-        render action: 'edit'
-      end
-    end
+		# PATCH/PUT /chapters/1
+		def update
+			if @chapter.update(chapter_params)
+				redirect_to book_chapters_path(@book)
 
-    # DELETE /chapters/1
-    def destroy
-      @chapter.destroy
-      redirect_to chapters_url, notice: 'Chapter was successfully destroyed.'
-    end
+			else
+				render action: 'edit'
+			end
+		end
 
-    private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_chapter
-        book = Book.find(params[:id])
-        @chapter = book.chapters #Chapter.find(params[:id])
-      end
+		# DELETE /chapters/1
+		def destroy
+			@chapter.destroy
+			redirect_to chapters_url, notice: 'Chapter was successfully destroyed.'
+		end
 
-      # Only allow a trusted parameter "white list" through.
-      def chapter_params
-        params[:chapter]
-      end
-  end
+		private
+			# Use callbacks to share common setup or constraints between actions.
+			def set_chapter
+				@book = Book.find(params[:book_id])
+				@chapter = Chapter.find(params[:id])
+			end
+
+			# Only allow a trusted parameter "white list" through.
+			def chapter_params
+				params[:chapter].permit!
+			end
+	end
 end

@@ -1,5 +1,6 @@
 require 'devise'
 require "rhinobook/engine"
+require "rhinobook/utils"
 
 module Rhinobook
 	class Engine < ::Rails::Engine

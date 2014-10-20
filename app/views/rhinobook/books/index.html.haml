@@ -25,7 +25,7 @@
 			- if @books.any?
 				- @books.each do |item| 
 					%tr
-						%td= link_to item.name, chapter_path(item)
+						%td= link_to item.name, book_chapters_path(item)
 						%td
 						%td
 							= link_to edit_book_path(item), class: 'btn btn-danger btn-small' do

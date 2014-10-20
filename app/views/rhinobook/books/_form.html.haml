@@ -1,0 +1,34 @@
+= form_for(@book) do |f| 
+	- if f.object.new_record?
+		%legend= "#{t(:_NEW)} Book"
+	- else
+		%legend= "#{t(:_EDIT)} \"#{@book.name}\""
+	= render 'shared/error_messages', object: f.object
+
+	.form-horizontal
+
+		.control-group
+			= f.label :name, class: 'control-label'
+			.controls
+				= f.text_field :name, class: 'span11' 
+
+		.control-group
+			= f.label :slug, class: 'control-label'
+			.controls
+				= f.text_field :slug, class: 'span11' 
+
+		.control-group
+			= f.label :active, class: 'control-label'
+			.controls
+				= f.check_box :active
+
+		.control-group
+			= f.label :descr, class: 'control-label'
+			.controls
+				= f.text_area :descr, class: 'span11' 
+
+		.form-actions
+			.btn-overlay
+				= f.button t("_BTN_SAVE"), class: "btn btn-primary"
+				= f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
+				= link_to t("_BTN_CANCEL"), books_path, class: "btn" 
