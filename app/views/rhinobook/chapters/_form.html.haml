@@ -9,13 +9,17 @@
 
     .span11
         .row-fluid
-            .span10
+            .span8
                 = f.label :name
                 = f.text_field :name, class: 'span12' 
 
             .span1
                 = f.label :position
                 = f.number_field :position, class: 'span12' 
+
+            .span2
+                = f.label :show_title
+                = f.check_box :show_title, class: 'span12'
 
             .span1
                 = f.label :active

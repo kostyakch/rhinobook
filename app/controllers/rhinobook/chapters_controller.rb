@@ -29,7 +29,7 @@ module Rhinobook
 			@chapter.rhinobook_books_id = @book.id
 
 			if @chapter.save
-				redirect_to book_chapters_path(@book)
+				redirect_to [@book, :chapters]
 			else
 				render action: 'new'
 			end
@@ -38,7 +38,7 @@ module Rhinobook
 		# PATCH/PUT /chapters/1
 		def update
 			if @chapter.update(chapter_params)
-				redirect_to book_chapters_path(@book)
+				redirect_to [@book, :chapters]
 
 			else
 				render action: 'edit'
@@ -48,14 +48,18 @@ module Rhinobook
 		# DELETE /chapters/1
 		def destroy
 			@chapter.destroy
-			redirect_to chapters_url, notice: 'Chapter was successfully destroyed.'
+			redirect_to [@book, :chapters]
 		end
 
 		private
 			# Use callbacks to share common setup or constraints between actions.
 			def set_chapter
-				@book = Book.find(params[:book_id])
-				@chapter = Chapter.find(params[:id])
+				begin
+					@book = Book.find(params[:book_id])
+					@chapter = Chapter.find(params[:id])
+				rescue
+					render :template => 'site/not_found', :status => 404
+				end
 			end
 
 			# Only allow a trusted parameter "white list" through.

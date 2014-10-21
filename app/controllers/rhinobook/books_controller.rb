@@ -25,7 +25,7 @@ module Rhinobook
 			@book = Book.new(book_params)
 
 			if @book.save
-				redirect_to @book, notice: 'Book was successfully created.'
+				redirect_to :books
 			else
 				render action: 'new'
 			end
@@ -34,7 +34,7 @@ module Rhinobook
 		# PATCH/PUT /books/1
 		def update
 			if @book.update(book_params)
-				redirect_to @book, notice: 'Book was successfully updated.'
+				redirect_to :books
 			else
 				render action: 'edit'
 			end
@@ -43,13 +43,17 @@ module Rhinobook
 		# DELETE /books/1
 		def destroy
 			@book.destroy
-			redirect_to books_url, notice: 'Book was successfully destroyed.'
+			redirect_to :books
 		end
 
 		private
 			# Use callbacks to share common setup or constraints between actions.
 			def set_book
-				@book = Book.find(params[:id])
+				begin
+					@book = Book.find(params[:id])
+				rescue
+					render :template => 'site/not_found', :status => 404
+				end				
 			end
 
 			# Only allow a trusted parameter "white list" through.

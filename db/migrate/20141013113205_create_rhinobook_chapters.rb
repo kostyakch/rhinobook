@@ -9,6 +9,6 @@ class CreateRhinobookChapters < ActiveRecord::Migration
 
 			t.timestamps
 		end
-		add_index :rhinobook_chapters, :name, :unique => true 
+		add_index :rhinobook_chapters, :name
 	end
 end
