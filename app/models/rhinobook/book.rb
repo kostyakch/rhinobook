@@ -5,7 +5,7 @@ module Rhinobook
 		has_many :pages, :dependent => :destroy, :foreign_key => "rhinobook_books_id"
 		accepts_nested_attributes_for :pages, allow_destroy: true, reject_if: :all_blank
 
-		has_many :chapters, :dependent => :destroy, :foreign_key => "rhinobook_books_id"
+		has_many :chapters, ->{ order(position: :asc) }, :dependent => :destroy, :foreign_key => "rhinobook_books_id"
 		accepts_nested_attributes_for :chapters, allow_destroy: true, reject_if: :all_blank
 
 		validates :name, :slug, presence: true

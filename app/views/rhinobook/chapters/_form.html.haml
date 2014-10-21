@@ -1,27 +1,30 @@
 = form_for([@book, @chapter]) do |f| 
     - if f.object.new_record?
-        %legend= "#{t(:_NEW)} #{t(:_CHAPTER)}"
+        %legend= "#{t(:_NEW)} #{t('chapter')}"
     - else
         %legend= "#{t(:_EDIT)} \"#{@chapter.name}\""
     = render 'shared/error_messages', object: f.object
 
     / = f.text_field :book, value: params[:book_id]
 
-    .form-horizontal
-        .control-group
-            = f.label :name, class: 'control-label'
-            .controls
-                = f.text_field :name, class: 'span11' 
+    .span11
+        .row-fluid
+            .span10
+                = f.label :name
+                = f.text_field :name, class: 'span12' 
 
-        .control-group
-            = f.label :active, class: 'control-label'
-            .controls
-                = f.check_box :active
+            .span1
+                = f.label :position
+                = f.number_field :position, class: 'span12' 
 
-        .control-group
-            = f.label :descr, class: 'control-label'
-            .controls
-                = f.text_area :descr, class: 'span11' 
+            .span1
+                = f.label :active
+                = f.check_box :active, class: 'span12'
+
+        .row-fluid
+            .span12
+                = f.label :descr
+                = f.text_area :descr, class: 'span12' 
 
         .form-actions
             .btn-overlay

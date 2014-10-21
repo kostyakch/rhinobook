@@ -3,12 +3,14 @@
 <head>
   <title>Rhinobook</title>
   <%= stylesheet_link_tag    "rhinobook/application", media: "all" %>
-  <%= javascript_include_tag "rhinobook/application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
+
+<%= javascript_include_tag "rhinoart/application" %>
+<%= raw yield(:javascript) %>
 </body>
 </html>

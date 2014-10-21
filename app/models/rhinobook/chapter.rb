@@ -6,5 +6,7 @@ module Rhinobook
 		accepts_nested_attributes_for :pages, allow_destroy: true, reject_if: :all_blank
 
 		validates :name, presence: true
+
+		acts_as_list scope: :rhinobook_books_id
 	end
 end

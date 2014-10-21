@@ -21,7 +21,7 @@
         .control-group
             = f.label :content, class: 'control-label'
             .controls
-                = f.text_area :content, class: 'span11' 
+                = f.text_area :content, class: 'span11 editor-area' 
 
         .form-actions
             .btn-overlay
@@ -30,3 +30,16 @@
                 = link_to t("_BTN_CANCEL"), chapter_pages_path(@chapter), class: "btn" 
 
 
+- content_for :javascript do 
+    = stylesheet_link_tag    "redactor/redactor"
+    = javascript_include_tag "redactor/redactor"
+
+    :javascript
+        $('textarea.editor-area').redactor({ 
+            autoresize: true,
+            minHeight: 300, 
+            maxHeight: 650,
+            'imageUpload': "#{rhinoart.upload_image_path}",
+            'imageGetJson': "#{rhinoart.image_list_path}",
+            'fileUpload': "#{rhinoart.upload_file_path}"
+        });
