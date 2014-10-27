@@ -30,6 +30,8 @@
 						%td
 							= link_to edit_book_path(item), class: 'btn btn-danger btn-small' do
 								%i.icon-pencil
+							= link_to book_domains_path(item), class: 'btn btn-danger btn-small' do
+								%i.icon-book
 							= link_to book_path(item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
 								%i.icon-trash
 

@@ -6,7 +6,7 @@
 	= render 'shared/error_messages', object: f.object
 
 	.row-fluid
-		.span8
+		.span6
 			= f.label :slug, class: 'control-label'
 			.controls
 				= f.text_field :slug, class: 'span12'
@@ -15,6 +15,11 @@
 			= f.label :domain_name, class: 'control-label'
 			.controls
 				= f.text_field :domain_name, class: 'span12'
+
+		.span2
+			= f.label :locale, class: 'control-label'
+			.controls
+				= f.select :locale, I18n.available_locales, class: 'span12'
 
 		.span1
 			= f.label :active, class: 'control-label'

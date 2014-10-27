@@ -1,0 +1,41 @@
+- provide(:title, t(:domains))
+
+
+.box-header
+	%h2
+		%i.fa-icon-book.align-justify
+		%span.break
+		= t(:domains)
+
+
+.box-content
+	.dataTables_wrapper
+		.row-fluid
+			.btn-overlay
+				= link_to books_path, class: 'btn btn-primary' do 
+					%i.halflings-icon.arrow-left
+					= t(:to_books)
+
+			.btn-overlay
+				= link_to new_book_domain_path, class: 'btn btn-primary' do 
+					%i.halflings-icon.plus
+					= t(:_BTN_CREATE)
+
+	%table.table.table-striped.tree
+		%thead
+			%tr
+				%th{ width: "90%" }= t(:domain) 
+				%th= t(:_ACTIONS) 
+		%tbody
+			- if @domains.any?
+				- @domains.each do |item| 
+					%tr
+						%td
+							= link_to item.name, edit_book_domain_path(@book, item)
+							%br
+								%small= "locale: #{item.locale}"
+						%td
+							= link_to edit_book_domain_path(@book, item), class: 'btn btn-danger btn-small' do
+								%i.icon-pencil
+							= link_to book_domain_path(@book, item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
+								%i.icon-trash
