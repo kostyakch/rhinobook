@@ -6,10 +6,15 @@
 	= render 'shared/error_messages', object: f.object
 
 	.row-fluid
-		.span11
+		.span8
 			= f.label :slug, class: 'control-label'
 			.controls
 				= f.text_field :slug, class: 'span12'
+
+		.span3
+			= f.label :domain_name, class: 'control-label'
+			.controls
+				= f.text_field :domain_name, class: 'span12'
 
 		.span1
 			= f.label :active, class: 'control-label'
