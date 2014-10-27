@@ -1,0 +1,12 @@
+ru:
+  pages: Страницы
+  page: Страница
+  
+  activerecord:
+    models:
+      page: Страница
+    attributes:
+      block:
+        num: Descriptopn
+        active: Активность
+        content: Контент

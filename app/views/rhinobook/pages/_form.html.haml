@@ -7,27 +7,32 @@
 
     / = f.text_field :book, value: params[:book_id]
 
-    .form-horizontal
-        .control-group
+    .row-fluid
+        .span1
             = f.label :num, class: 'control-label'
             .controls
-                = f.number_field :num, class: 'span1' 
+                = f.number_field :num, class: 'span12' 
 
-        .control-group
+        .span2
             = f.label :active, class: 'control-label'
             .controls
                 = f.check_box :active
 
-        .control-group
-            = f.label :content, class: 'control-label'
-            .controls
-                = f.text_area :content, class: 'span11 editor-area' 
+    .row-fluid
+        - I18n.available_locales.each do |locale| 
+            - I18n.locale = locale          
+            %div{ class: "span#{12/I18n.available_locales.count}"}
+                %legend= locale
+                .control-group
+                    = f.label :content, class: 'control-label'
+                    .controls
+                        = f.text_area "content_#{locale}", class: 'span11 editor-area' 
 
-        .form-actions
-            .btn-overlay
-                = f.button t("_BTN_SAVE"), class: "btn btn-primary"
-                = f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
-                = link_to t("_BTN_CANCEL"), chapter_pages_path(@chapter), class: "btn" 
+    .form-actions
+        .btn-overlay
+            = f.button t("_BTN_SAVE"), class: "btn btn-primary"
+            = f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
+            = link_to t("_BTN_CANCEL"), chapter_pages_path(@chapter), class: "btn" 
 
 
 - content_for :javascript do 
@@ -36,9 +41,9 @@
 
     :javascript
         $('textarea.editor-area').redactor({ 
-            autoresize: true,
-            minHeight: 300, 
-            maxHeight: 650,
+            autoresize: false,
+            minHeight: 620, 
+            maxHeight: 620,
             'imageUpload': "#{rhinoart.upload_image_path}",
             'imageGetJson': "#{rhinoart.image_list_path}",
             'fileUpload': "#{rhinoart.upload_file_path}"

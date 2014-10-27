@@ -1,4 +1,14 @@
-en:  
-  chapters: Сhapters
-  chapter: Сhapter
-  to_chapters: Return to chapters
+en:
+  chapters: Chapters
+  chapter: Chapter
+  
+  activerecord:
+    models:
+      chapter: Chapter
+    attributes:
+      block:
+        name: Name
+        active: Active
+        descr: Description
+        position: Position
+        show_title: Show title

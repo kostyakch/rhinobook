@@ -11,6 +11,9 @@ module Rhinobook
 		validates :name, :slug, presence: true
 		validates_uniqueness_of :name, :slug		
 
+		translates :name, :descr
+		globalize_accessors :locales => I18n.available_locales, :attributes => translated_attribute_names	
+
 		private
 
 		def name_to_slug

@@ -8,5 +8,8 @@ module Rhinobook
 		validates :name, presence: true
 
 		acts_as_list scope: :rhinobook_books_id
+
+		translates :name, :descr
+		globalize_accessors :locales => I18n.available_locales, :attributes => translated_attribute_names	
 	end
 end

@@ -9,10 +9,6 @@
 
     .span11
         .row-fluid
-            .span8
-                = f.label :name
-                = f.text_field :name, class: 'span12' 
-
             .span1
                 = f.label :position
                 = f.number_field :position, class: 'span12' 
@@ -25,10 +21,21 @@
                 = f.label :active
                 = f.check_box :active, class: 'span12'
 
+
         .row-fluid
-            .span12
-                = f.label :descr
-                = f.text_area :descr, class: 'span12' 
+            - I18n.available_locales.each do |locale| 
+                - I18n.locale = locale          
+                %div{ class: "span#{12/I18n.available_locales.count}"}
+                    %legend= locale
+                    .control-group
+                        = f.label :name, class: 'control-label'
+                        .controls
+                            = f.text_field "name_#{locale}", class: 'span11' 
+
+                    .control-group
+                        = f.label :descr, class: 'control-label'
+                        .controls
+                            = f.text_area "descr_#{locale}", class: 'span11' 
 
         .form-actions
             .btn-overlay

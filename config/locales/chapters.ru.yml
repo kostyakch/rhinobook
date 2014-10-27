@@ -1,0 +1,14 @@
+ru:
+  chapters: Главы
+  chapter: Глава
+  
+  activerecord:
+    models:
+      chapter: Глава
+    attributes:
+      block:
+        name: Наименование
+        active: Активность
+        descr: Описание
+        position: Позиция
+        show_title: Отображать заголовок

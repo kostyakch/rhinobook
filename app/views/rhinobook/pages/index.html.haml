@@ -32,7 +32,7 @@
 						%td
 							= link_to "#{t(:page)} #{item.num}", edit_chapter_page_path(@chapter, item)
 							%br
-							%small= truncate(item.content, length: 270)
+							%small= truncate(strip_tags(item.content), length: 270)
 						%td
 							= link_to edit_chapter_page_path(@chapter, item), class: 'btn btn-danger btn-small' do
 								%i.icon-pencil

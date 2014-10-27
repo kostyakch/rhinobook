@@ -1,0 +1,13 @@
+ru:
+  books: Книги
+  book: Книга
+  
+  activerecord:
+    models:
+      book: Книга
+    attributes:
+      block:
+        name: Наименование
+        slug: Url
+        descr: Описание
+        active: Активность

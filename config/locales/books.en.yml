@@ -1,4 +1,13 @@
-en:  
+en:
   books: Books
   book: Book
-  to_books: Return to books
+  
+  activerecord:
+    models:
+      book: Book
+    attributes:
+      block:
+        name: Name
+        slug: Url
+        descr: Descriptopn
+        active: Active
