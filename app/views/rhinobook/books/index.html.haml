@@ -18,8 +18,7 @@
 	%table.table.table-striped.tree
 		%thead
 			%tr
-				%th{ width: "70%" }= t(:Book) 
-				%th{ width: "20%" }= t(:_STATUS)
+				%th{ width: "85%" }= t(:Book) 
 				%th= t(:_ACTIONS) 
 		%tbody
 			- if @books.any?
@@ -27,11 +26,10 @@
 					%tr
 						%td= link_to item.name, book_chapters_path(item)
 						%td
-						%td
 							= link_to edit_book_path(item), class: 'btn btn-danger btn-small' do
-								%i.icon-pencil
-							= link_to book_domains_path(item), class: 'btn btn-danger btn-small' do
-								%i.icon-book
+								%i.icon-edit
+							= link_to book_domains_path(item), class: 'btn btn-danger btn-small', title: t('domains') do
+								%i.icon-share
 							= link_to book_path(item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
 								%i.icon-trash
 

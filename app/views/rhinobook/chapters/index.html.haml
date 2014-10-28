@@ -34,6 +34,6 @@
 						%td
 						%td
 							= link_to edit_book_chapter_path(@book, item), class: 'btn btn-danger btn-small' do
-								%i.icon-pencil
+								%i.icon-edit
 							= link_to book_chapter_path(@book, item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
 								%i.icon-trash

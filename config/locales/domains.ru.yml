@@ -1,0 +1,13 @@
+ru:
+  domains: Домены
+  domain: Домен
+  
+  activerecord:
+    models:
+      domain: Домен
+    attributes:
+      block:
+        name: Наименование
+        descr: Описание
+        locale: Локализация
+        active: Активность

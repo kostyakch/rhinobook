@@ -1,13 +1,13 @@
 en:
-  books: Books
-  book: Book
+  domains: Domains
+  domain: Domain
   
   activerecord:
     models:
-      book: Book
+      domain: Domain
     attributes:
       block:
         name: Name
-        slug: Url
         descr: Description
+        locale: Locale
         active: Active

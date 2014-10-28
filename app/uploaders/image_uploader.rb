@@ -5,7 +5,8 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MimeTypes
-  include CarrierWave::RMagick
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # process :set_content_type
   # process :save_content_type_in_model
