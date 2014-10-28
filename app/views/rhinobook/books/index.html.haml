@@ -1,4 +1,4 @@
-- provide(:title, "All #{t(:_BOOKS)}")
+- provide(:title, t(:_BOOKS))
 
 .box-header
 	%h2
@@ -18,7 +18,7 @@
 	%table.table.table-striped.tree
 		%thead
 			%tr
-				%th{ width: "85%" }= t(:Book) 
+				%th{ width: "85%" }= t(:_BOOKS) 
 				%th= t(:_ACTIONS) 
 		%tbody
 			- if @books.any?

@@ -1,10 +1,11 @@
-- provide(:title, "All #{t(:_CHAPTERS)}")
+- provide(:title, t(:chapters))
 
 .box-header
 	%h2
 		%i.fa-icon-book.align-justify
 		%span.break
-		= t(:_CHAPTERS)
+		= @book.name
+		= "/ #{ t(:chapters) }"
 
 
 .box-content
@@ -20,18 +21,17 @@
 					%i.halflings-icon.plus
 					= t(:_BTN_CREATE)
 
+
 	%table.table.table-striped.tree
 		%thead
 			%tr
-				%th{ width: "70%" }= t(:_CHAPTERS) 
-				%th{ width: "20%" }= t(:_STATUS)
+				%th{ width: "90%" }= t(:chapters) 
 				%th= t(:_ACTIONS) 
 		%tbody
 			- if @chapters.any?
 				- @chapters.each do |item| 
 					%tr
 						%td= link_to item.name, chapter_pages_path(item)
-						%td
 						%td
 							= link_to edit_book_chapter_path(@book, item), class: 'btn btn-danger btn-small' do
 								%i.icon-edit

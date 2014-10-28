@@ -1,10 +1,13 @@
-- provide(:title, "All #{t(:pages)}")
+- provide(:title, t(:pages))
 
 .box-header
 	%h2
 		%i.fa-icon-book.align-justify
 		%span.break
-		= "#{t(:pages)} for #{t(:chapter)}: \"#{@chapter.name}\""
+		= @chapter.book.name
+		= "/ #{@chapter.name}"
+		= "/ #{ t(:pages) }"
+
 
 
 .box-content

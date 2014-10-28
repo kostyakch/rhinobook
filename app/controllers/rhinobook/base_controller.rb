@@ -3,6 +3,7 @@ require_dependency "rhinobook/application_controller"
 module Rhinobook
 	class BaseController < Rhinoart::BaseController
 		before_action :set_locale
+		before_action { authorize! :manage, :books }
 		
 		def set_locale
 			I18n.locale = params[:locale] || I18n.default_locale

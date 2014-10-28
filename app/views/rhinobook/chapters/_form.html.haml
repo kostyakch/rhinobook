@@ -1,8 +1,12 @@
+- av_locales = (current_user.present? && current_user.locales.present? && current_user.locales.count > 0) ? current_user.locales : I18n.available_locales
+
 = form_for([@book, @chapter]) do |f| 
     - if f.object.new_record?
-        %legend= "#{t(:_NEW)} #{t('chapter')}"
+        / %legend= "#{t(:_NEW)} #{t('chapter')}"
+        %legend= "#{t(:book)}: #{@book.name} / #{t(:chapter)}"
     - else
-        %legend= "#{t(:_EDIT)} \"#{@chapter.name}\""
+        %legend= "#{t(:book)}: #{@book.name} / #{t(:chapter)}: \"#{@chapter.name}\""
+        
     = render 'shared/error_messages', object: f.object
 
     / = f.text_field :book, value: params[:book_id]
@@ -23,9 +27,9 @@
 
 
         .row-fluid
-            - I18n.available_locales.each do |locale| 
+            - av_locales.each do |locale| 
                 - I18n.locale = locale          
-                %div{ class: "span#{12/I18n.available_locales.count}"}
+                %div{ class: "span#{12/av_locales.count}"}
                     %legend= locale
                     .control-group
                         = f.label :name, class: 'control-label'
