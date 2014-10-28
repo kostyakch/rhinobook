@@ -6,20 +6,10 @@
 	= render 'shared/error_messages', object: f.object
 
 	.row-fluid
-		.span6
+		.span11
 			= f.label :slug, class: 'control-label'
 			.controls
 				= f.text_field :slug, class: 'span12'
-
-		.span3
-			= f.label :domain_name, class: 'control-label'
-			.controls
-				= f.text_field :domain_name, class: 'span12'
-
-		.span2
-			= f.label :locale, class: 'control-label'
-			.controls
-				= f.select :locale, I18n.available_locales, class: 'span12'
 
 		.span1
 			= f.label :active, class: 'control-label'
@@ -31,6 +21,12 @@
 			- I18n.locale = locale			
 			%div{ class: "span#{12/I18n.available_locales.count}"}
 				%legend= locale
+
+				.control-group
+					= f.label :author, class: 'control-label'
+					.controls
+						= f.text_field "author_#{locale}", class: 'span11' 
+
 				.control-group
 					= f.label :name, class: 'control-label'
 					.controls
@@ -41,8 +37,51 @@
 					.controls
 						= f.text_area "descr_#{locale}", class: 'span11' 
 
+						
+
+	.row-fluid
+		.span6
+			- if f.object.image_ru.present?
+				.book-cover
+					= image_tag f.object.image_ru.thumb.url
+					%a{href: "#", data: {behavior: "remove_image", remove_html: f.hidden_field(:remove_image_ru, value: true)}} 
+						%span.halflings-icon.remove
+			- else
+				= f.file_field :image_ru	
+
+		.span6
+			- if f.object.image_en.present?
+				.book-cover
+					= image_tag f.object.image_en.thumb.url
+					%a{href: "#", data: {behavior: "remove_image", remove_html: f.hidden_field(:remove_image_en, value: true)}} 
+						%span.halflings-icon.remove
+			- else
+				= f.file_field :image_en	
+
+
 	.form-actions
 		.btn-overlay
 			= f.button t("_BTN_SAVE"), class: "btn btn-primary"
 			= f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
 			= link_to t("_BTN_CANCEL"), books_path, class: "btn" 
+
+- content_for :javascript do
+	:javascript
+		$(document).on("click", "[data-behavior*=remove_image]", function(e) {
+			e.preventDefault()
+			
+		    $(this).parent().parent().append($(this).data("remove-html"))
+		    $(this).parent().remove()	
+		});		
+	:css
+		.book-cover {
+			position: relative;
+		}
+		.book-cover a {
+			display: block;
+			width: 14px;
+			height: 17px;
+			position: absolute;
+			bottom: 0;
+			background-color: gray;
+		}		
