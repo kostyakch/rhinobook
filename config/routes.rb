@@ -17,13 +17,3 @@ Rhinobook::Engine.routes.draw do
 	# end
 
 end
-
-
-#     book_domains GET    /books/:book_id/domains(.:format)              rhinobook/domains#index
-#                  POST   /books/:book_id/domains(.:format)              rhinobook/domains#create
-#  new_book_domain GET    /books/:book_id/domains/new(.:format)          rhinobook/domains#new
-# edit_book_domain GET    /books/:book_id/domains/:id/edit(.:format)     rhinobook/domains#edit
-#      book_domain GET    /books/:book_id/domains/:id(.:format)          rhinobook/domains#show
-#                  PATCH  /books/:book_id/domains/:id(.:format)          rhinobook/domains#update
-#                  PUT    /books/:book_id/domains/:id(.:format)          rhinobook/domains#update
-#                  DELETE /books/:book_id/domains/:id(.:format)          rhinobook/domains#destroy
