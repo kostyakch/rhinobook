@@ -1,6 +1,8 @@
 - av_locales = (current_user.present? && current_user.locales.present? && current_user.locales.count > 0) ? current_user.locales : I18n.available_locales
 
 = form_for([@chapter, @page]) do |f| 
+    = hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
+    
     - if f.object.new_record?
         %legend= "#{t(:book)}: #{@chapter.book.name} / #{t(:chapter)}: \"#{@chapter.name}\""
     - else
@@ -34,7 +36,7 @@
     .form-actions
         .btn-overlay
             = f.button t("_BTN_SAVE"), class: "btn btn-primary"
-            = f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
+            / = f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
             = link_to t("_BTN_CANCEL"), chapter_pages_path(@chapter), class: "btn" 
 
 

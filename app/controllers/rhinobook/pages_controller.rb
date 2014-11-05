@@ -41,7 +41,11 @@ module Rhinobook
 		# PATCH/PUT /pages/1
 		def update
 			if @page.update(page_params)
-				redirect_to [@chapter, :pages]
+				if params[:redirect_to].present?
+					redirect_to params[:redirect_to]
+				else
+					redirect_to [@chapter, :pages]
+				end
 			else
 				render action: 'edit'
 			end

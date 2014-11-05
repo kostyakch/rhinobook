@@ -3,8 +3,8 @@ module Rhinobook
         before_action :set_domain, only: [:edit, :update, :destroy]
 
         def index
-            @domains = Domain.all
             @book = Book.find(params[:book_id])
+            @domains = @book.domains
         end
 
         def new
