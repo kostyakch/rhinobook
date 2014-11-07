@@ -13,6 +13,7 @@ module Rhinobook
 	        :attributes => {
 	            'img' => ['src', 'alt', 'title'],
 	            'a' => ['href', 'title', 'name'],
+	            'p' => ['style']
 	        }
 	    }		
 	end	
