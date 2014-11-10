@@ -49,7 +49,7 @@
             autoresize: false,
             minHeight: 620, 
             maxHeight: 620,
-            'imageUpload': "#{rhinoart.upload_image_path}",
-            'imageGetJson': "#{rhinoart.image_list_path}",
-            'fileUpload': "#{rhinoart.upload_file_path}"
+            'imageUpload': "#{rhinoart.upload_image_path(id: @page.id)}",
+            'fileUpload': "#{rhinoart.upload_file_path(id: @page.id)}",
+            'imageGetJson': "#{rhinoart.image_list_path}"
         });
