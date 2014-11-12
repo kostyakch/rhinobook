@@ -43,13 +43,13 @@
 - content_for :javascript do 
     = stylesheet_link_tag    "redactor/redactor"
     = javascript_include_tag "redactor/redactor"
-
+    
     :javascript
         $('textarea.editor-area').redactor({ 
             autoresize: false,
             minHeight: 620, 
             maxHeight: 620,
-            'imageUpload': "#{rhinoart.upload_image_path(id: @page.id)}",
-            'fileUpload': "#{rhinoart.upload_file_path(id: @page.id)}",
+            'imageUpload': "#{rhinoart.upload_image_path(id: "#{@chapter.id}_#{@page.id}")}",
+            'fileUpload': "#{rhinoart.upload_file_path(id: "#{@chapter.id}_#{@page.id}")}",
             'imageGetJson': "#{rhinoart.image_list_path}"
         });
