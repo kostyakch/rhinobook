@@ -19,7 +19,12 @@ module Rhinobook
 				require 'sanitize'
 				I18n.available_locales.each do |locale|
 					Globalize.with_locale(locale) do
-						self.content = Sanitize.fragment(self.content, :elements => Rhinobook::Engine.config.sanitize_filter[:elements], :attributes => Rhinobook::Engine.config.sanitize_filter[:attributes])
+						self.content = Sanitize.fragment(
+							self.content, 
+							:elements => Rhinobook::Engine.config.sanitize_filter[:elements], 
+							:attributes => Rhinobook::Engine.config.sanitize_filter[:attributes],
+							:css => Rhinobook::Engine.config.sanitize_filter[:css],
+						)
 					end
 	            end
 			end		
