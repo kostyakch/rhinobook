@@ -29,15 +29,15 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process :resize_to_limit => [870, nil]  
+  # process :resize_to_limit => [870, nil]  
 
   version :thumb do
     process resize_to_fill: [120, 120]
   end
 
-  version :big_thumb do
-    process resize_to_limit: [150, nil]
-  end
+  # version :big_thumb do
+  #   process resize_to_limit: [150, nil]
+  # end
 
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -46,13 +46,13 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end  
 
-  def filename
-    if original_filename
-      original_filename.gsub! /\s*[^A-Za-z0-9\.\/]\s*/, '_'
-      original_filename.strip
-      original_filename.downcase
-    end
-  end
+  # def filename
+  #   if original_filename
+  #     original_filename.gsub! /\s*[^A-Za-z0-9\.\/]\s*/, '_'
+  #     original_filename.strip
+  #     original_filename.downcase
+  #   end
+  # end
   
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

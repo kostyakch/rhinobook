@@ -13,7 +13,7 @@ module Rhinobook
 	        :attributes => {
 	            'img' => ['src', 'alt', 'title'],
 	            'a' => ['href', 'title', 'name'],
-	            'p' => ['style'],
+	            'p' => ['style', 'color'],
 	            'video' => ['width', 'height', 'controls', 'autoplay', 'loop', 'muted', 'poster', 'preload'],
 	            'source' => ['src', 'type'],
 	            'span' => ['style']

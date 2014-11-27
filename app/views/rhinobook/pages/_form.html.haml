@@ -33,6 +33,9 @@
                     .controls
                         = f.text_area "content_#{locale}", class: 'span11 editor-area' 
 
+    .row-fluid
+        = render 'image', f: f
+
     .form-actions
         .btn-overlay
             = f.button t("_BTN_SAVE"), class: "btn btn-primary"
