@@ -18,10 +18,20 @@
             .controls
                 = f.number_field :num, class: 'span12' 
 
-        .span2
+        .span1
             = f.label :active, class: 'control-label'
             .controls
                 = f.check_box :active
+
+        .span1
+            = f.label :advice, class: 'control-label'
+            .controls
+                = f.check_box :advice
+
+        .span1
+            = f.label :resume, class: 'control-label'
+            .controls
+                = f.check_box :resume
 
     .row-fluid
         - av_locales.each do |locale| 
