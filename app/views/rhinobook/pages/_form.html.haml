@@ -44,7 +44,13 @@
                         = f.text_area "content_#{locale}", class: 'span11 editor-area' 
 
     .row-fluid
+        %br
         = render 'image', f: f
+
+    %hr
+    .row-fluid
+        %br
+        = render 'video', f: f
 
     .form-actions
         .btn-overlay

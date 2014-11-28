@@ -2,11 +2,9 @@
 
 #require 'carrierwave/processing/mime_types'
 
-class ImageUploader < CarrierWave::Uploader::Base
+class VideoUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MimeTypes
-  # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
 
   # process :set_content_type
   # process :save_content_type_in_model
@@ -29,21 +27,12 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # process :resize_to_limit => [870, nil]  
-
-  version :thumb do
-    process resize_to_fill: [120, 120]
-  end
-
-  # version :big_thumb do
-  #   process resize_to_limit: [150, nil]
-  # end
 
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(jpg jpeg gif png mp4)
+    %w(mp4)
   end  
 
   # def filename

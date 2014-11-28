@@ -8,6 +8,9 @@ module Rhinobook
 		has_many :images, ->{ order(position: :asc) }, as: :imageable, :dependent => :destroy
 		accepts_nested_attributes_for :images, allow_destroy: true#, reject_if: proc { |a| a['image_id'].blank? } 
 
+		has_many :videos, ->{ order(position: :asc) }, as: :videoable, :dependent => :destroy
+		accepts_nested_attributes_for :videos, allow_destroy: true#, reject_if: proc { |a| a['image_id'].blank? } 
+
 		SAFE_INFO_ACCESSORS = [ :advice, :resume ]
 		store :params, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 

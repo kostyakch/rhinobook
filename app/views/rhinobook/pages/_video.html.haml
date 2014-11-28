@@ -1,0 +1,20 @@
+- new_video = capture do
+	- if !f.object.videos.any?
+		- f.object.videos.build
+
+- count = 0
+= f.fields_for :videos do |ff| 		
+	- count = count + 1
+
+	.span3
+		%legend Video
+		- if ff.object.file.present?	
+			%video{ width: 320, height: 240, controls: :controls }
+				%source{ src: ff.object.file.url, type: 'video/mp4' }
+					You need an HMTL5 capable browser to view this video.
+			%br
+			= ff.label :_destroy do
+				= ff.check_box :_destroy 
+				Delete video
+
+		= ff.file_field :file
