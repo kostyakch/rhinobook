@@ -1,6 +1,6 @@
 module Rhinobook
 	class Page < ActiveRecord::Base
-		# before_save :sanitize_content
+		before_save :sanitize_content
 
 		belongs_to :chapter, :foreign_key => "rhinobook_chapters_id"
 		belongs_to :book, :foreign_key => "rhinobook_books_id"
