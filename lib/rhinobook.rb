@@ -9,10 +9,10 @@ module Rhinobook
 		end
 
 	    config.sanitize_filter = {
-	        :elements => ['p', 'ul', 'li', 'ol', 'table', 'tr', 'td', 'img', 'br', 'hr', 'b', 'strong', 'h2', 'h3', 'h4', 'i', 'pre', 'em', 'a', 'video', 'source', 'span'],
+	        :elements => ['p', 'ul', 'li', 'ol', 'table', 'tr', 'td', 'img', 'br', 'hr', 'b', 'strong', 'h2', 'h3', 'h4', 'i', 'pre', 'em', 'video', 'source', 'span'],
 	        :attributes => {
 	            'img' => ['src', 'alt', 'title'],
-	            'a' => ['href', 'title', 'name'],
+	            # 'a' => ['href', 'title', 'name'],
 	            'p' => ['style', 'color'],
 	            'video' => ['width', 'height', 'controls', 'autoplay', 'loop', 'muted', 'poster', 'preload'],
 	            'source' => ['src', 'type'],

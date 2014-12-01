@@ -6,8 +6,7 @@
 = f.fields_for :images do |ff| 		
 	- count = count + 1
 
-	.span3
-		%legend Image
+	.span3		
 		- if ff.object.file.present?		
 			.media.pull-left{style: 'margin: 5px;'}
 				.media-object{ style: 'width: 120px; height: 120px;position: relative;'}
