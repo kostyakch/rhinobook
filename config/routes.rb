@@ -9,6 +9,7 @@ Rhinobook::Engine.routes.draw do
 		resources :books do
 			resources :domains
 			resources :chapters
+			get 'reorder_pages'
 		end		
 
 		resources :chapters, only: :nil do 

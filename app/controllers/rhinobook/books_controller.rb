@@ -46,6 +46,15 @@ module Rhinobook
 			redirect_to :books
 		end
 
+		def reorder_pages
+			@book = Book.find params[:book_id]
+			@book.pages.each_with_index do |p, i|
+				page = Page.find p
+				page.set_list_position(i + 1)
+			end
+			redirect_to :books
+		end
+
 		private
 			# Use callbacks to share common setup or constraints between actions.
 			def set_book
