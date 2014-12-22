@@ -1,23 +1,25 @@
 - new_video = capture do
-	- if !f.object.videos.any?
-		- f.object.videos.build
-
-- count = 0
-= f.fields_for :videos do |ff| 		
-	- count = count + 1
-
-	.span3
-		- if ff.object.file.present?	
-			%video{ width: 320, height: 240, controls: :controls }
-				%source{ src: ff.object.file.url, type: 'video/mp4' }
-					You need an HMTL5 capable browser to view this video.
-			%br
+	= f.fields_for :videos___attributes do |ff|
+		.span4
 			= ff.label :_destroy do
 				= ff.check_box :_destroy 
-				Delete video
+				Delete image
 
-		= ff.file_field :file
+			= ff.file_field :file
 
-	/ .span3
-	/ 	%legend Poster
-	/ 	= render 'image', f: ff
+
+.video-list
+	= f.fields_for :videos do |ff| 		
+		.span4
+			- if ff.object.file.present?	
+				%video{ width: 320, height: 240, controls: :controls }
+					%source{ src: ff.object.file.url, type: 'video/mp4' }
+						You need an HMTL5 capable browser to view this video.
+				%br
+				= ff.label :_destroy do
+					= ff.check_box :_destroy 
+					Delete video
+
+			= ff.file_field :file
+
+%a.btn.btn-sm.btn-info{href: "#", data: {behavior: "add_new_video", new: new_video.gsub("videos___attributes]", "videos_attributes][0]").gsub("videos_attributes", "videos_attributes")}} Add new Video
