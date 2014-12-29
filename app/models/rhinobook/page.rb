@@ -11,7 +11,7 @@ module Rhinobook
 		has_many :videos, ->{ order(position: :asc) }, as: :videoable, :dependent => :destroy
 		accepts_nested_attributes_for :videos, allow_destroy: true#, reject_if: proc { |a| a['image_id'].blank? } 
 
-		SAFE_INFO_ACCESSORS = [ :advice, :resume ]
+		SAFE_INFO_ACCESSORS = [ :advice, :resume, :signed ]
 		store :params, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 
 		default_scope ->{ order(num: :asc) }

@@ -1,4 +1,5 @@
 - av_locales = (current_user.present? && current_user.locales.present? && current_user.locales.count > 0) ? current_user.locales : I18n.available_locales
+- disabled = (@page.signed.to_i == 1)
 
 = form_for([@chapter, @page]) do |f| 
     = hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
@@ -16,22 +17,28 @@
         .span1
             = f.label :num, class: 'control-label'
             .controls
-                = f.number_field :num, class: 'span12' 
+                = f.number_field :num, disabled: disabled, class: 'span12' 
 
         .span1
             = f.label :active, class: 'control-label'
             .controls
-                = f.check_box :active
+                = f.check_box :active, disabled: disabled
 
         .span1
             = f.label :advice, class: 'control-label'
             .controls
-                = f.check_box :advice
+                = f.check_box :advice, disabled: disabled                
 
         .span1
             = f.label :resume, class: 'control-label'
             .controls
-                = f.check_box :resume
+                = f.check_box :resume, disabled: disabled
+
+        - if can? :access, :sign_books
+            .span1
+                = f.label :signed, class: 'control-label'
+                .controls
+                    = f.check_box :signed
 
     .row-fluid
         - av_locales.each do |locale| 
@@ -41,7 +48,10 @@
                 .control-group
                     = f.label :content, class: 'control-label'
                     .controls
-                        = f.text_area "content_#{locale}", class: 'span11 editor-area' 
+                        - if !disabled
+                            = f.text_area "content_#{locale}", disabled: disabled, class: 'span11 editor-area' 
+                        - else
+                            = f.object.content.html_safe
 
     .row-fluid
         %br
@@ -56,8 +66,7 @@
 
     .form-actions
         .btn-overlay
-            = f.button t("_BTN_SAVE"), class: "btn btn-primary"
-            / = f.button t('_BTN_SAVE_AND_CONTINUE'), class: 'btn btn-success', name: 'continue', value: 'continue'
+            = f.button t("_BTN_SAVE"), class: "btn btn-primary" if can?(:access, :sign_books) || !disabled
             = link_to t("_BTN_CANCEL"), chapter_pages_path(@chapter), class: "btn" 
 
 

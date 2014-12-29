@@ -26,7 +26,8 @@
 	%table.table.table-striped.tree
 		%thead
 			%tr
-				%th{ width: "90%" }= t(:pages) 
+				%th{ width: "85%" }= t(:pages) 
+				%th= t(:_STATUS)
 				%th= t(:_ACTIONS) 
 		%tbody
 			- if @pages.any?
@@ -37,7 +38,10 @@
 							%br
 							%small= truncate(strip_tags(item.content), length: 270)
 						%td
+							= t('status_signed') if item.signed.to_i == 1
+						%td
 							= link_to edit_chapter_page_path(@chapter, item), class: 'btn btn-danger btn-small' do
 								%i.icon-edit
-							= link_to chapter_page_path(@chapter, item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
-								%i.icon-trash
+							- if !(item.signed.to_i == 1)
+								= link_to chapter_page_path(@chapter, item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
+									%i.icon-trash

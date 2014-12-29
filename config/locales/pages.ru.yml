@@ -6,7 +6,7 @@ ru:
     models:
       page: Страница
     attributes:
-      block:
+      page:
         num: Descriptopn
         active: Активность
         content: Контент

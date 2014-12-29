@@ -47,7 +47,20 @@ module Rhinobook
 
 		# DELETE /chapters/1
 		def destroy
-			@chapter.destroy
+			can_destroy = true
+
+			@chapter.pages.each do |p|
+				if p.signed.to_i == 1
+					can_destroy = false
+					break
+				end					
+			end
+
+			if can_destroy
+				@chapter.destroy 
+			else
+				flash[:info] = t('cant_destroy', chapter: @chapter.name)
+			end
 			redirect_to [@book, :chapters]
 		end
 

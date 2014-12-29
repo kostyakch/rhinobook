@@ -1,12 +1,13 @@
 en:
   chapters: Chapters
   chapter: Chapter
+  cant_destroy: "Can't destroy chapter: \"%{chapter}\""
   
   activerecord:
     models:
       chapter: Chapter
     attributes:
-      block:
+      chapter:
         name: Name
         active: Active
         descr: Description

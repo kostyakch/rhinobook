@@ -6,7 +6,7 @@ en:
     models:
       page: Page
     attributes:
-      block:
+      page:
         num: Page number
         active: Active
         content: Content

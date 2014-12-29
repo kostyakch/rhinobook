@@ -34,7 +34,8 @@ module Rhinoart
     validates :name, presence: true
 
     ADMIN_PANEL_ROLE_BOOK_MANAGER = "Book Manager"
-    ADMIN_PANEL_ROLES.push(ADMIN_PANEL_ROLE_BOOK_MANAGER)
+    ADMIN_PANEL_ROLE_BOOK_AUTHOR = "Book Author"
+    ADMIN_PANEL_ROLES.push(ADMIN_PANEL_ROLE_BOOK_MANAGER, ADMIN_PANEL_ROLE_BOOK_AUTHOR)
 
 	def locales=(value)
 		value.reject! { |l| l.empty? }

@@ -1,12 +1,13 @@
 ru:
   chapters: Главы
   chapter: Глава
-  
+  cant_destroy: "Нельзя удалить главу: \"%{chapter}\". Возможно страницы этой главы подписаны. Вначале удалите подписи страниц, а затем удалите главу."
+
   activerecord:
     models:
       chapter: Глава
     attributes:
-      block:
+      chapter:
         name: Наименование
         active: Активность
         descr: Описание

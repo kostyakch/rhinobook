@@ -2,6 +2,8 @@ module Rhinobook
 	class PagesController < BaseController
 		before_action :set_page, only: [:show, :edit, :update, :destroy]
 
+		before_action :check_acces, only: [:update, :destroy]
+
 		# GET /pages
 		def index
 			# @pages = Page.where().order(:num)
@@ -71,6 +73,12 @@ module Rhinobook
 			# Only allow a trusted parameter "white list" through.
 			def page_params
 				params[:page].permit!
+			end
+
+			def check_acces
+				if @page.signed.to_i == 1 && !can?(:access, :sign_books)
+					authorize! :access, :sign_books
+				end
 			end
 	end
 end
