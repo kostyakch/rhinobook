@@ -4,7 +4,7 @@ Rhinobook::Engine.routes.draw do
         :controllers => { :sessions => "rhinoart/sessions", :passwords => "rhinoart/passwords"  } 
         
 	# scope "(:locale)", locale: /ru|en/ do 
-		root :to => 'pages#index'
+		root :to => 'books#index'
 
 		resources :books do
 			resources :domains
