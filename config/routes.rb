@@ -3,7 +3,7 @@ Rhinobook::Engine.routes.draw do
     devise_for :users, class_name: "Rhinoart::User", module: :devise, 
         :controllers => { :sessions => "rhinoart/sessions", :passwords => "rhinoart/passwords"  } 
         
-	# scope "(:locale)", locale: /ru|en/ do 
+	scope "(:locale)", locale: /ru|en/ do 
 		root :to => 'books#index'
 
 		resources :books do
@@ -15,6 +15,5 @@ Rhinobook::Engine.routes.draw do
 		resources :chapters, only: :nil do 
 			resources :pages, on: :collection
 		end
-	# end
-
+	end
 end

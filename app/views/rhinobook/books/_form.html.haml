@@ -38,7 +38,9 @@
 					= f.label :descr, class: 'control-label'
 					.controls
 						= f.text_area "descr_#{locale}", class: 'span11' 
-
+				%small= render 'rhinobook/shared/changed_by', f: f
+				%br
+				%br
 						
 
 	.row-fluid

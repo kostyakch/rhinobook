@@ -1,5 +1,5 @@
 module Rhinobook
-	class Page < ActiveRecord::Base
+	class Page < Rhinoart::Base
 		before_save :sanitize_content
 
 		belongs_to :chapter, :foreign_key => "rhinobook_chapters_id"
@@ -20,9 +20,10 @@ module Rhinobook
 
 		acts_as_list column: :num, scope: :rhinobook_books_id
 
-		translates :content
+		translates :content, versioning: :paper_trail
 		globalize_accessors :locales => I18n.available_locales, :attributes => translated_attribute_names
 
+		
 
 		private	
 			def sanitize_content

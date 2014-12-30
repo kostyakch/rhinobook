@@ -15,7 +15,7 @@
         .row-fluid
             .span1
                 = f.label :position
-                = f.number_field :position, class: 'span12' 
+                = f.number_field :position, class: 'span12'                 
 
             .span2
                 = f.label :show_title
@@ -40,6 +40,8 @@
                         = f.label :descr, class: 'control-label'
                         .controls
                             = f.text_area "descr_#{locale}", class: 'span11' 
+
+                    %small= render 'rhinobook/shared/changed_by', f: f
 
         .form-actions
             .btn-overlay

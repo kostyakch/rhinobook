@@ -53,6 +53,8 @@
                         - else
                             = f.object.content.html_safe
 
+                = render 'rhinobook/shared/changed_by', f: f 
+
     .row-fluid
         %br
         %legend Image

@@ -1,5 +1,6 @@
 module Rhinobook
-	class Book < ActiveRecord::Base
+	class Book < Rhinoart::Base
+		# has_paper_trail
 		before_validation :name_to_slug
 
 		has_many :pages, :dependent => :destroy, :foreign_key => "rhinobook_books_id"
@@ -17,8 +18,7 @@ module Rhinobook
 		validates :name, :slug, presence: true
 		validates_uniqueness_of :name, :slug		
 
-		translates :name, :descr, :author
-
+		translates :name, :descr, :author, versioning: :paper_trail
 		globalize_accessors :locales => I18n.available_locales, :attributes => translated_attribute_names	
 
 

@@ -29,8 +29,8 @@ require File.expand_path('../../app/models/rhinoart/user', Rhinoart::Engine.call
 module Rhinoart
   class User < ActiveRecord::Base
 
-    SAFE_INFO_ACCESSORS = [:locales]
-    store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
+    # SAFE_INFO_ACCESSORS = [:locales]
+    # store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
     validates :name, presence: true
 
     ADMIN_PANEL_ROLE_BOOK_MANAGER = "Book Manager"

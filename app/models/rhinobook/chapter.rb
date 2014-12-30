@@ -1,5 +1,5 @@
 module Rhinobook
-	class Chapter < ActiveRecord::Base
+	class Chapter < Rhinoart::Base
 		belongs_to :book, :foreign_key => "rhinobook_books_id"
 
 		has_many :pages, ->{ order(num: :asc) }, :dependent => :destroy, :foreign_key => "rhinobook_chapters_id"
@@ -9,7 +9,7 @@ module Rhinobook
 
 		acts_as_list scope: :rhinobook_books_id
 
-		translates :name, :descr
+		translates :name, :descr, versioning: :paper_trail
 		globalize_accessors :locales => I18n.available_locales, :attributes => translated_attribute_names	
 	end
 end

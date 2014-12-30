@@ -1,0 +1,4 @@
+- if f.object.last_version_change_user.present?
+	= "#{t('last_change_by')}:"
+	= link_to f.object.last_version_change_user.name, rhinoart.user_path(f.object.last_version_change_user.id), target: :_blank
+= "#{l f.object.last_version_change_date, :format => :short}" if f.object.last_version_change_date.present?                                
