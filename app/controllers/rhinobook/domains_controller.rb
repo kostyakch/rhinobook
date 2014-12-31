@@ -1,3 +1,5 @@
+require_dependency "rhinobook/application_controller"
+
 module Rhinobook
     class DomainsController < BaseController
         before_action :set_domain, only: [:edit, :update, :destroy]

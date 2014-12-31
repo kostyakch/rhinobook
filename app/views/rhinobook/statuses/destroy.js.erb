@@ -1,0 +1,23 @@
+<% if @status.errors.any? %>
+	$("#errors").html('<%= escape_javascript(render("shared/flash", object: @status, :formats => [:html])) %>');
+<% else %>
+	$("#status_<%=@status.id%>").remove();
+	<% exists_statuses = @status.statusable.statuses.where(locale: locale ) %>
+	<% exists_st_count = exists_statuses.count %>
+	<% cur_status = exists_statuses.last.present? ? exists_statuses.last.status.to_i+1 : 0 %>	
+
+	
+
+	<% if @status.pre_status.present? %>
+		$('#status_<%= @status.pre_status.id %>').append('<%= link_to "<span class=\"icon-remove-sign\" style=\"font-size: 10px; color: red;\"></span>".html_safe, status_path(@status.pre_status), remote: true, method: :delete, data: { confirm: t("confirm_to_delete_record") }, class: "status-del", style: "color:red" %>');
+	<% end %>		
+	//location.reload();
+
+	<% if !@status.statusable.can_edit?(@status.locale) || exists_st_count > 2 %>
+		$('.status_fields #set_status_<%= @status.statusable_id %>_<%= @status.locale %>').hide(); 
+	<% else %>
+		$('.status_fields #set_status_<%= @status.statusable_id %>_<%= @status.locale %>').html('Set as <%= Rhinobook::Status::STATUSES.key(cur_status) %>'); 
+		$('.status_fields #set_status_<%= @status.statusable_id %>_<%= @status.locale %>').show(); 
+	<% end %>	
+	// location.reload();
+<% end %>

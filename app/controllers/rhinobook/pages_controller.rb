@@ -1,3 +1,5 @@
+require_dependency "rhinobook/application_controller"
+
 module Rhinobook
 	class PagesController < BaseController
 		before_action :set_page, only: [:show, :edit, :update, :destroy]

@@ -1,0 +1,47 @@
+- if f.object.present?
+	- exists_statuses = f.object.statuses.where(locale: locale )
+	- exists_st_count = exists_statuses.count
+	- cur_status = exists_statuses.last.present? ? exists_statuses.last.status.to_i+1 : 0
+
+	- status_fields = capture do  
+		- @statuses = f.object.statuses.build
+		= f.fields_for :statuses, @statuses do |ff|	
+			= ff.hidden_field :locale, value: locale
+			= ff.label :status do 
+				= link_to "Set as #{Rhinobook::Status::STATUSES.key(cur_status)}", 
+					set_new_status_statuses_path(statusable_id: f.object, statusable_type: f.object.class.name, locale: locale), 
+					method: :post,
+					remote: true,
+					id: "set_status_#{f.object.id}_#{locale}",
+					style: "#{exists_statuses.count > 2 ? 'display: none' : ''}"
+
+	.statuses{ id: "status_cont_#{f.object.id}_#{locale}" }
+		- if exists_st_count > 0	
+			- exists_statuses.each_with_index do |s, i| 
+				- remove_status_link = capture do
+					= link_to status_path(s), title: 'Remove status', remote: true, method: :delete, data: { confirm: t('confirm_to_delete_record') }, class: 'status-del' do 
+						%span.icon-remove-sign{ style: 'font-size: 10px; color: red;' }
+
+				- if s.status.present?
+					- status_text = Rhinobook::Status::STATUSES.key s.status.to_i
+					- content = "<nobr>User: #{Rhinoart::User.find(s.user_id).name}</nobr><br><nobr>At: #{l s.created_at, format: :short}</nobr>"				
+					%span.small{ id: "status_#{s.id}" }	
+						%b				
+							= "#{status_text}".humanize
+							By:
+						= Rhinoart::User.find(s.user_id).name
+						= l s.created_at, format: :short
+
+						- if exists_st_count == i+1
+							= remove_status_link if f.object.can_edit?(locale)						
+
+
+	- if f.object.can_edit?(locale)
+		.status_fields= status_fields
+
+:javascript
+	$('.status-flag').click(function(){
+		var form = $('form');
+		form.attr('data-remote', true);
+		form.submit();
+	});

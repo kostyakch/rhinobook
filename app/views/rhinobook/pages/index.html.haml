@@ -42,6 +42,6 @@
 						%td
 							= link_to edit_chapter_page_path(@chapter, item), class: 'btn btn-danger btn-small' do
 								%i.icon-edit
-							- if !(item.signed.to_i == 1)
+							- if item.can_edit? #!(item.signed.to_i == 1)
 								= link_to chapter_page_path(@chapter, item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
 									%i.icon-trash

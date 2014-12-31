@@ -27,19 +27,25 @@
 require File.expand_path('../../app/models/rhinoart/user', Rhinoart::Engine.called_from)
 
 module Rhinoart
-  class User < ActiveRecord::Base
+	class User < ActiveRecord::Base
 
-    # SAFE_INFO_ACCESSORS = [:locales]
-    # store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
-    validates :name, presence: true
+		# SAFE_INFO_ACCESSORS = [:locales]
+		# store :info, accessors: SAFE_INFO_ACCESSORS, coder: JSON
+		validates :name, presence: true
 
-    ADMIN_PANEL_ROLE_BOOK_MANAGER = "Book Manager"
-    ADMIN_PANEL_ROLE_BOOK_AUTHOR = "Book Author"
-    ADMIN_PANEL_ROLES.push(ADMIN_PANEL_ROLE_BOOK_MANAGER, ADMIN_PANEL_ROLE_BOOK_AUTHOR)
+		ADMIN_PANEL_ROLE_BOOK_MANAGER = "Book Manager"
+		ADMIN_PANEL_ROLE_BOOK_AUTHOR = "Book Author"
 
-	def locales=(value)
-		value.reject! { |l| l.empty? }
-		super
+		# Content editors
+		ADMIN_PANEL_ROLE_CONTENT_CREATOR = "Book Creator"
+		ADMIN_PANEL_ROLE_CONTENT_EDITOR = "Book Editor"
+		ADMIN_PANEL_ROLE_CONTENT_PUBLISHER = "Book Publisher"
+
+		ADMIN_PANEL_ROLES.push(ADMIN_PANEL_ROLE_CONTENT_CREATOR, ADMIN_PANEL_ROLE_CONTENT_EDITOR, ADMIN_PANEL_ROLE_CONTENT_PUBLISHER)
+
+		def locales=(value)
+			value.reject! { |l| l.empty? }
+			super
+		end
 	end
-  end
 end

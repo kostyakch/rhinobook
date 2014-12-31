@@ -1,3 +1,5 @@
+require_dependency "rhinobook/application_controller"
+
 module Rhinobook
 	class BooksController < BaseController
 		before_action :set_book, only: [:show, :edit, :update, :destroy]

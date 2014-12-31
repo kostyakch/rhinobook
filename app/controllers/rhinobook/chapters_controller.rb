@@ -1,3 +1,5 @@
+require_dependency "rhinobook/application_controller"
+
 module Rhinobook
 	class ChaptersController < BaseController
 		before_action :set_chapter, only: [:show, :edit, :update, :destroy]

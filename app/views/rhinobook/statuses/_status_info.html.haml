@@ -1,0 +1,12 @@
+- exists_statuses = @status.statusable.statuses.where(locale: locale )
+- exists_st_count = exists_statuses.count
+- cur_status = exists_statuses.last.present? ? exists_statuses.last.status.to_i : 0
+%span.small{ id: "status_#{@status.id}" }
+	%b
+		= "#{Rhinobook::Status::STATUSES.key(cur_status)}".humanize
+		By:
+	= "<nobr>#{Rhinoart::User::current.name}</nobr> At: #{l @status.created_at, format: :short}</nobr>".html_safe
+	- if @status.statusable.can_edit?(@status.locale)
+		= link_to status_path(@status), data: { confirm: "Are you sure?", method: :delete, remote: true }, class: 'status-del' do
+			%span.icon-remove-sign{ style: "font-size: 10px; color: red;" }
+

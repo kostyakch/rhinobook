@@ -1,0 +1,15 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.statuses-block {
+	background-color: #EBEBEB;
+	padding: 5px 3px 1px 3px;
+	min-height: 70px;
+
+	.small {
+		font-size: 12px;
+		display: block;
+	}
+}

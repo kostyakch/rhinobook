@@ -11,6 +11,9 @@ module Rhinobook
 		has_many :videos, ->{ order(position: :asc) }, as: :videoable, :dependent => :destroy
 		accepts_nested_attributes_for :videos, allow_destroy: true#, reject_if: proc { |a| a['image_id'].blank? } 
 
+	    has_many :statuses, as: :statusable, :dependent => :destroy
+	    accepts_nested_attributes_for :statuses, allow_destroy: true, reject_if: proc { |s| s['status'].to_i == 0 && s['statusable_id'].to_s == '' } #proc { |s| s['status'].blank? }
+
 		SAFE_INFO_ACCESSORS = [ :advice, :resume, :signed ]
 		store :params, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 
@@ -23,7 +26,6 @@ module Rhinobook
 		translates :content, versioning: :paper_trail
 		globalize_accessors :locales => I18n.available_locales, :attributes => translated_attribute_names
 
-		
 
 		private	
 			def sanitize_content

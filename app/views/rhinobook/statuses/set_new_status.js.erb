@@ -1,0 +1,15 @@
+$('#status_cont_<%= @status.statusable_id %>_<%= @status.locale %>').find('.status-del').remove();
+
+$('#status_cont_<%= @status.statusable_id %>_<%= @status.locale %>').append('<%= escape_javascript(render("rhinobook/statuses/status_info", :formats => [:html])) %>');
+
+<% exists_statuses = @status.statusable.statuses.where(locale: locale ) %>
+<% exists_st_count = exists_statuses.count %>
+<% cur_status = exists_statuses.last.present? ? exists_statuses.last.status.to_i+1 : 0 %>
+
+<% if !@status.statusable.can_edit?(@status.locale) || exists_st_count > 2 %>
+	$('.status_fields #set_status_<%= @status.statusable_id %>_<%= @status.locale %>').hide(); 
+<% else %>
+	$('.status_fields #set_status_<%= @status.statusable_id %>_<%= @status.locale %>').html('Set as <%= Rhinobook::Status::STATUSES.key(cur_status) %>'); 
+	$('.status_fields #set_status_<%= @status.statusable_id %>_<%= @status.locale %>').show(); 
+<% end %>
+// location.reload();

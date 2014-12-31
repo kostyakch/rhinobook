@@ -1,0 +1,14 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+$('a.status').hover(			
+	function (){
+		$(this).popover({html: true});
+		$(this).popover('show');
+	}, function() {
+		$(this).popover('hide');
+	}
+);
+$('a.status').click(function(){
+	return false;
+});	

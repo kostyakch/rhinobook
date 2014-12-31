@@ -42,7 +42,8 @@
 
     .row-fluid
         - av_locales.each do |locale| 
-            - I18n.locale = locale          
+            - I18n.locale = locale    
+            - disabled = !f.object.can_edit?(locale)      
             %div{ class: "span#{12/av_locales.count}"}
                 %legend= locale
                 .control-group
@@ -53,7 +54,9 @@
                         - else
                             = f.object.content.html_safe
 
-                = render 'rhinobook/shared/changed_by', f: f 
+                .form-group.statuses-block
+                    = render 'rhinobook/shared/changed_by', f: f                 
+                    = render 'rhinobook/statuses/statuses', f: f, locale: locale
 
     .row-fluid
         %br
@@ -68,7 +71,7 @@
 
     .form-actions
         .btn-overlay
-            = f.button t("_BTN_SAVE"), class: "btn btn-primary" if can?(:access, :sign_books) || !disabled
+            = f.button t("_BTN_SAVE"), class: "btn btn-primary" #if can?(:access, :sign_books) || !disabled
             = link_to t("_BTN_CANCEL"), chapter_pages_path(@chapter), class: "btn" 
 
 
@@ -76,6 +79,7 @@
     = stylesheet_link_tag    "redactor/redactor"
     = javascript_include_tag "redactor/redactor"
     = javascript_include_tag "rhinobook/application"
+    = stylesheet_link_tag    "rhinobook/statuses"
     
     :javascript
         $('textarea.editor-area').redactor({ 
