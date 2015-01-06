@@ -1,5 +1,5 @@
 - av_locales = (current_user.present? && current_user.locales.present? && current_user.locales.count > 0) ? current_user.locales : I18n.available_locales
-- disabled = (@page.signed.to_i == 1)
+- disabled = @page.can_edit?
 
 = form_for([@chapter, @page]) do |f| 
     = hidden_field_tag :redirect_to, params[:redirect_to] if params[:redirect_to].present?
@@ -33,12 +33,6 @@
             = f.label :resume, class: 'control-label'
             .controls
                 = f.check_box :resume, disabled: disabled
-
-        - if can? :access, :sign_books
-            .span1
-                = f.label :signed, class: 'control-label'
-                .controls
-                    = f.check_box :signed
 
     .row-fluid
         - av_locales.each do |locale| 
