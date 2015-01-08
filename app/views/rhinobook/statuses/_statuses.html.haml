@@ -4,16 +4,17 @@
 	- cur_status = exists_statuses.last.present? ? exists_statuses.last.status.to_i+1 : 0
 
 	- status_fields = capture do  
-		- @statuses = f.object.statuses.build
-		= f.fields_for :statuses, @statuses do |ff|	
-			= ff.hidden_field :locale, value: locale
-			= ff.label :status do 
-				= link_to "Set as #{Rhinobook::Status::STATUSES.key(cur_status)}", 
-					set_new_status_statuses_path(statusable_id: f.object, statusable_type: f.object.class.name, locale: locale), 
-					method: :post,
-					remote: true,
-					id: "set_status_#{f.object.id}_#{locale}",
-					style: "#{exists_statuses.count > 2 ? 'display: none' : ''}"
+		- if !f.object.new_record?
+			- @statuses = f.object.statuses.build
+			= f.fields_for :statuses, @statuses do |ff|	
+				= ff.hidden_field :locale, value: locale
+				= ff.label :status do 
+					= link_to "Set as #{Rhinobook::Status::STATUSES.key(cur_status)}", 					
+						set_new_status_statuses_path(statusable_id: f.object, statusable_type: f.object.class.name, locale: locale), 
+						method: :post,
+						remote: true,
+						id: "set_status_#{f.object.id}_#{locale}",
+						style: "#{exists_statuses.count > 2 ? 'display: none' : ''}"
 
 	.statuses{ id: "status_cont_#{f.object.id}_#{locale}" }
 		- if exists_st_count > 0	
