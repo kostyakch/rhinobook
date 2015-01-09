@@ -16,11 +16,12 @@
 					.media-object{ style: 'width: 120px;position: relative;'}
 						= image_tag ff.object.file.thumb.url 
 
-				= ff.label :_destroy do
-					= ff.check_box :_destroy 
-					Delete image
+				- if can_edit
+					= ff.label :_destroy do
+						= ff.check_box :_destroy 
+						Delete image
 
-			= ff.file_field :file
+			= ff.file_field :file if can_edit
 
-		
-%a.btn.btn-sm.btn-info{href: "#", data: {behavior: "add_new_image", new: new_image.gsub("images___attributes]", "images_attributes][0]").gsub("images_attributes", "images_attributes")}} Add new Image
+- if can_edit
+	%a.btn.btn-sm.btn-info{href: "#", data: {behavior: "add_new_image", new: new_image.gsub("images___attributes]", "images_attributes][0]").gsub("images_attributes", "images_attributes")}} Add new Image

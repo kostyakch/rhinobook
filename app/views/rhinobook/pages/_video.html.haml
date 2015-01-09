@@ -16,10 +16,12 @@
 					%source{ src: ff.object.file.url, type: 'video/mp4' }
 						You need an HMTL5 capable browser to view this video.
 				%br
-				= ff.label :_destroy do
-					= ff.check_box :_destroy 
-					Delete video
+				- if can_edit
+					= ff.label :_destroy do
+						= ff.check_box :_destroy 
+						Delete video
 
-			= ff.file_field :file
+			= ff.file_field :file if can_edit
 
-%a.btn.btn-sm.btn-info{href: "#", data: {behavior: "add_new_video", new: new_video.gsub("videos___attributes]", "videos_attributes][0]").gsub("videos_attributes", "videos_attributes")}} Add new Video
+- if can_edit
+	%a.btn.btn-sm.btn-info{href: "#", data: {behavior: "add_new_video", new: new_video.gsub("videos___attributes]", "videos_attributes][0]").gsub("videos_attributes", "videos_attributes")}} Add new Video
