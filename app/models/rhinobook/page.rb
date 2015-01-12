@@ -19,7 +19,7 @@ module Rhinobook
 
 		default_scope ->{ order(num: :asc) }
 
-		validates :content, presence: true
+		# validates :content, presence: true
 
 		acts_as_list column: :num, scope: :rhinobook_books_id
 

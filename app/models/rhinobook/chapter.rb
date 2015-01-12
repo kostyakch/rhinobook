@@ -11,5 +11,17 @@ module Rhinobook
 
 		translates :name, :descr, versioning: :paper_trail
 		globalize_accessors :locales => I18n.available_locales, :attributes => translated_attribute_names	
+
+		def can_edit?
+			res = true
+			pages.each do |p|
+				if !p.can_edit?
+					res = false
+					break
+				end
+			end
+
+			return res
+		end
 	end
 end

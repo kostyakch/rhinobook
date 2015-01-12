@@ -32,7 +32,8 @@
 								%i.icon-share
 							= link_to book_reorder_pages_path(item), class: 'btn btn-danger btn-small', title: 'Reorder pages' do
 								%i.icon-repeat
-							= link_to book_path(item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
-								%i.icon-trash
+							- if item.can_edit?
+								= link_to book_path(item), method: 'delete', class: 'btn btn-danger btn-small', data: { confirm: t('_DELETE_CONFIRM') } do
+									%i.icon-trash
 
 
