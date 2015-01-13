@@ -14,6 +14,9 @@ module Rhinobook
 	    has_many :statuses, as: :statusable, :dependent => :destroy
 	    accepts_nested_attributes_for :statuses, allow_destroy: true, reject_if: proc { |s| s['status'].to_i == 0 && s['statusable_id'].to_s == '' } #proc { |s| s['status'].blank? }
 
+		has_many :temp_contents, as: :contentable, :dependent => :destroy
+		accepts_nested_attributes_for :temp_contents, allow_destroy: true
+
 		SAFE_INFO_ACCESSORS = [ :advice, :resume ]
 		store :params, accessors: SAFE_INFO_ACCESSORS, coder: JSON
 
