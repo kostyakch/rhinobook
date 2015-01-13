@@ -1,7 +1,7 @@
 require_dependency "rhinobook/application_controller"
 
 module Rhinobook
-	class TempContentsController < ApplicationController
+	class TempContentsController < BaseController
 		def index			
 		end
 
