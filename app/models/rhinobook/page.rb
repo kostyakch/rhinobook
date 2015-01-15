@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: rhinobook_pages
+#
+#  id                    :integer          not null, primary key
+#  rhinobook_chapters_id :integer
+#  num                   :integer
+#  content               :text
+#  active                :boolean          default(TRUE)
+#  created_at            :datetime
+#  updated_at            :datetime
+#  rhinobook_books_id    :integer          not null
+#  params                :text
+#
+
 module Rhinobook
 	class Page < Rhinoart::Base
 		before_save :sanitize_content

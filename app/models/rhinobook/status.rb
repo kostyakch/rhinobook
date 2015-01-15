@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: rhinobook_statuses
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  statusable_id   :integer
+#  statusable_type :string(255)
+#  status          :integer
+#  locale          :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 module Rhinobook
 	class Status < ActiveRecord::Base
 		before_validation :set_status

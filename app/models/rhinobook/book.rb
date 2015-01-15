@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: rhinobook_books
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  slug       :string(255)      not null
+#  descr      :text
+#  active     :boolean          default(TRUE)
+#  created_at :datetime
+#  updated_at :datetime
+#  author     :string(255)
+#  image_ru   :string(255)
+#  image_en   :string(255)
+#
+
 module Rhinobook
 	class Book < Rhinoart::Base
 		# has_paper_trail

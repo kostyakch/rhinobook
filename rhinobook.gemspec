@@ -38,4 +38,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'sanitize'
 
+  s.add_dependency 'actionpack-action_caching'
+
 end

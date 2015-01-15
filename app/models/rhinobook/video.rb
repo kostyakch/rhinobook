@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: rhinobook_videos
+#
+#  id                :integer          not null, primary key
+#  videoable_id      :integer
+#  videoable_type    :string(255)
+#  name              :string(255)
+#  file              :string(255)
+#  file_content_type :string(255)
+#  position          :integer
+#  info              :text
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 module Rhinobook
 	class Video < ActiveRecord::Base
 		belongs_to :videoable, polymorphic: true

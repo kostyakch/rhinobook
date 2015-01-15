@@ -5,6 +5,10 @@ class CreateRhinobookTempContents < ActiveRecord::Migration
 
 			t.string :key_hash
 			t.text :content
+			t.text :info
+
+			t.datetime :last_show
+			t.string   :last_show_ip
 
 			t.timestamps
 		end

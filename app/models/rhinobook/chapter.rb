@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: rhinobook_chapters
+#
+#  id                 :integer          not null, primary key
+#  rhinobook_books_id :integer
+#  name               :string(255)
+#  descr              :text
+#  active             :boolean          default(TRUE)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  position           :integer
+#  show_title         :boolean          default(TRUE)
+#
+
 module Rhinobook
 	class Chapter < Rhinoart::Base
 		belongs_to :book, :foreign_key => "rhinobook_books_id"

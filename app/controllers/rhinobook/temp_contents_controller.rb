@@ -10,6 +10,7 @@ module Rhinobook
 			@content.contentable_id = params[:contentable_id]
 			@content.contentable_type = params[:contentable_type]
 			@content.content = params[:content]
+			@content.author = @content.contentable.book.author
 			@content.save
 		end
 
