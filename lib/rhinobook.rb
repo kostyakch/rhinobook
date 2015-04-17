@@ -1,6 +1,4 @@
-require 'devise'
 require "rhinobook/engine"
-require "rhinobook/utils"
 
 module Rhinobook
 	class Engine < ::Rails::Engine
@@ -24,3 +22,5 @@ module Rhinobook
 	    }		
 	end	
 end
+
+require 'rhinobook/railtie' if defined?(Rails)
