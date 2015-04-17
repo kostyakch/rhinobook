@@ -13,21 +13,27 @@ module Rhinobook
 
     initializer "rhinobook.init" do |app|     
 
-      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER = "Book Manager"
-      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR = "Book Author"
+      # Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER = "Book Manager"
+      # Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR = "Book Author"
 
-      # Content editors
-      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_CREATOR = "Book Creator"
-      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_EDITOR = "Book Editor"
-      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_PUBLISHER = "Book Publisher"
+      # # Content editors
+      # Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_CREATOR = "Book Creator"
+      # Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_EDITOR = "Book Editor"
+      # Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_PUBLISHER = "Book Publisher"
 
-      Rhinoart::User::ADMIN_PANEL_ROLES.push(
-        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER, 
-        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR, 
-        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_CREATOR, 
-        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_EDITOR, 
-        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_PUBLISHER
-      ) 
+      # Rhinoart::User::ADMIN_PANEL_ROLES.push(
+      #   Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER, 
+      #   Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR, 
+      #   Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_CREATOR, 
+      #   Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_EDITOR, 
+      #   Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_PUBLISHER
+      # ) 
+
+      Rhinoart::UserRoles.add_admin_role 'Book Manager'
+      Rhinoart::UserRoles.add_admin_role 'Book Author'
+      Rhinoart::UserRoles.add_admin_role 'Book Creator'
+      Rhinoart::UserRoles.add_admin_role 'Book Editor'
+      Rhinoart::UserRoles.add_admin_role 'Book Publisher'
 
       Rhinoart::Menu::MainMenu.add_item({
         icon: 'fa-icon-book',
