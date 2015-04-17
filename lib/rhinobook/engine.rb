@@ -18,9 +18,9 @@ module Rhinobook
 
 
       Rhinoart::Menu::MainMenu.add_item({
-        icon: 'fa-icon-picture',
+        icon: 'fa-icon-book',
         link: proc{ rhinobook.books_path },
-        label: 'rhinoart_gallery._GALLERY',
+        label: 'rhinoart_gallery.books',
         allowed: proc{ can?(:manage, :books) },
         active: proc{ 
         	controller_name == 'books' ||  
