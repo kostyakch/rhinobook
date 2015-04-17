@@ -1,3 +1,5 @@
+require "rhinobook/ability"
+
 module Rhinobook
   class Railtie < Rails::Railtie
 
@@ -13,6 +15,9 @@ module Rhinobook
       )
     end
 
+    initializer "rhinobook_railtie.configure_ability" do |app|
+      ::Ability.send(:include, Rhinobook::Ability)
+    end
   end
 end
 

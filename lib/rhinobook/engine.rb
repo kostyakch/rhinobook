@@ -11,11 +11,23 @@ module Rhinobook
   class Engine < ::Rails::Engine
     isolate_namespace Rhinobook
 
-    initializer "rhinobook.init" do |app|
+    initializer "rhinobook.init" do |app|     
 
-      Rhinoart::User::ADMIN_PANEL_ROLE_BOOKS_MANAGER = "Books Manager"
-      Rhinoart::User::ADMIN_PANEL_ROLES << Rhinoart::User::ADMIN_PANEL_ROLE_BOOKS_MANAGER
+      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER = "Book Manager"
+      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR = "Book Author"
 
+      # Content editors
+      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_CREATOR = "Book Creator"
+      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_EDITOR = "Book Editor"
+      Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_PUBLISHER = "Book Publisher"
+
+      Rhinoart::User::ADMIN_PANEL_ROLES.push(
+        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_MANAGER, 
+        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_AUTHOR, 
+        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_CREATOR, 
+        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_EDITOR, 
+        Rhinoart::User::ADMIN_PANEL_ROLE_BOOK_PUBLISHER
+      ) 
 
       Rhinoart::Menu::MainMenu.add_item({
         icon: 'fa-icon-book',

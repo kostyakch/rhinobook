@@ -52,9 +52,9 @@ module Rhinobook
 		private
 			def name_to_slug
 				if !self.slug.present?
-					self.slug = Rhinobook::Utils.to_slug(self.name)
+					self.slug = Rhinoart::Utils.to_slug(self.name)
 				else
-					self.slug = Rhinobook::Utils.to_slug(self.slug)
+					self.slug = Rhinoart::Utils.to_slug(self.slug)
 				end
 			end
 	end
