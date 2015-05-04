@@ -31,5 +31,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'sanitize'
 
   s.add_dependency 'actionpack-action_caching'
+  s.add_dependency 'globalize', '~> 5.0.0'
 
 end

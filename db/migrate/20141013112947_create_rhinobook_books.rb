@@ -1,7 +1,7 @@
 class CreateRhinobookBooks < ActiveRecord::Migration
 	def change
 		create_table :rhinobook_books do |t|
-			t.string :name, :null => false
+			t.string :name
 			t.string :slug, :null => false
 			t.text :descr
 			t.boolean :active, :default => true
